@@ -30,10 +30,9 @@
 
         h1 { color: #ff4d6d; font-size: 1.8rem; margin-bottom: 15px; }
         
-        /* Locked state styling */
         #locked-section h2 { color: #ff4d6d; font-style: italic; }
         #open-btn {
-            display: none; /* Hidden until Feb 14 */
+            display: none; 
             margin-top: 20px;
             background-color: #ff4d6d;
             color: white;
@@ -51,7 +50,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Proposal state styling */
         #quiz-section { display: none; }
         #main-photo { width: 100%; border-radius: 15px; margin-bottom: 15px; }
 
@@ -68,7 +66,6 @@
         #yesBtn { background-color: #ff4d6d; color: white; }
         #noBtn { background-color: #ffb3c1; color: #ff4d6d; position: absolute; left: 160px; }
 
-        /* Animation & Countdown */
         .heart { position: fixed; top: -10vh; user-select: none; z-index: 50; pointer-events: none; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
         
@@ -83,7 +80,7 @@
 
     <div id="container">
         <div id="locked-section">
-            <img src="https://lh3.googleusercontent.com/u/0/d/1yxq2_-mzsyuxAFKjzxpgo07BBNas0sLQ" style="width:100px;" alt="Waiting...">
+            <img src="https://lh3.googleusercontent.com/u/0/d/1yxq2_-mzsyuxAFKjzxpgo07BBNas0sLQ" style="width:120px; height:120px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 3px solid #ff4d6d;" alt="Waiting...">
             <h2>Hey Manasa, something special is waiting for you...</h2>
             <p id="lock-text">This page will unlock exactly on Valentine's Day. Stay tuned, Potti! ❤️</p>
             <button id="open-btn" onclick="unlockProposal()">Open Your Surprise 🎁</button>
@@ -100,9 +97,9 @@
 
         <div id="celebration" class="celebration">
             <h1>YAY! I love you! Simran 🥰</h1>
-            <img src="https://lh3.googleusercontent.com/u/0/d/1RsiFKMo0Gawt8IHO6bUI9fxrJ7fDT_0G" style="width:100%" alt="Happy Celebration">
-            <div id="final-msg">I Love You Forever!❤️</div>
-            <h2 id="valentine-wish" style="color:#ff4d6d; margin-top:20px; display:none;">Happy Valentines Day Dear Potti❤️</h2>
+            <img src="https://lh3.googleusercontent.com/u/0/d/1RsiFKMo0Gawt8IHO6bUI9fxrJ7fDT_0G" style="width:100%; border-radius: 15px;" alt="Happy Celebration">
+            <div id="final-msg">I Love You Forever! ❤️</div>
+            <h2 id="valentine-wish" style="color:#ff4d6d; margin-top:20px; display:none;">Happy Valentines Day Dear Potti ❤️</h2>
         </div>
     </div>
 
@@ -115,7 +112,6 @@
             const diff = valentinesDay - now;
 
             if (diff <= 0) {
-                // IT IS TIME!
                 document.getElementById("timer-container").style.display = "none";
                 document.getElementById("lock-text").innerHTML = "The wait is over! Click below:";
                 document.getElementById("open-btn").style.display = "inline-block";
