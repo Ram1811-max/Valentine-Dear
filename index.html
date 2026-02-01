@@ -102,72 +102,82 @@
             <h2 id="valentine-wish" style="color:#ff4d6d; margin-top:20px; display:none;">Happy Valentines Day Dear Potti ❤️</h2>
         </div>
     </div>
-
+<div class="buttons">
+    <button id="yesBtn" onclick="startCelebration()">Yes</button>
+    <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No</button>
+</div>
     <div id="timer-container">Loading Countdown...</div>
 
-    <script>
-        function updateStatus() {
-            const valentinesDay = new Date("Feb 14, 2026 00:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = valentinesDay - now;
 
-            if (diff <= 0) {
-                document.getElementById("timer-container").style.display = "none";
-                document.getElementById("lock-text").innerHTML = "The wait is over! Click below:";
-                document.getElementById("open-btn").style.display = "inline-block";
-            } else {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById("timer-container").innerHTML = `${days}d ${hours}h ${mins}m ${secs}s until your surprise! 🌹`;
-            }
+<script>
+    function updateStatus() {
+        const valentinesDay = new Date("Feb 14, 2026 00:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = valentinesDay - now;
+
+        if (diff <= 0) {
+            document.getElementById("timer-container").style.display = "none";
+            document.getElementById("lock-text").innerHTML = "The wait is over! Click below:";
+            document.getElementById("open-btn").style.display = "inline-block";
+        } else {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("timer-container").innerHTML = `${days}d ${hours}h ${mins}m ${secs}s until your surprise! 🌹`;
         }
-        setInterval(updateStatus, 1000);
+    }
+    setInterval(updateStatus, 1000);
 
-        function unlockProposal() {
-            document.getElementById("locked-section").style.display = "none";
-            document.getElementById("quiz-section").style.display = "block";
-        }
+    function unlockProposal() {
+        document.getElementById("locked-section").style.display = "none";
+        document.getElementById("quiz-section").style.display = "block";
+    }
 
-        function moveNo() {
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
+    // MOBILE OPTIMIZED RUNAWAY LOGIC
+    function moveNo() {
+        const btn = document.getElementById('noBtn');
+        
+        // We calculate a random position, but keep it within the visible screen
+        // Subtracting 100px ensures it doesn't go off the edge of a small phone screen
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        
+        btn.style.position = 'fixed';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+        btn.style.zIndex = '999'; // Ensures it stays on top of other elements
+    }
 
-        function startCelebration() {
-            document.getElementById('quiz-section').style.display = 'none';
-            document.getElementById('celebration').style.display = 'block';
-            document.getElementById('loveSong').play();
-            
-            for(let i = 0; i < 150; i++) {
-                setTimeout(createHeart, i * 40);
-            }
-
-            setTimeout(() => {
-                const msg = document.getElementById('final-msg');
-                const wish = document.getElementById('valentine-wish');
-                msg.style.display = 'block';
-                wish.style.display = 'block';
-                setTimeout(() => { msg.style.opacity = '1'; }, 100);
-            }, 4000);
+    function startCelebration() {
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('celebration').style.display = 'block';
+        document.getElementById('loveSong').play();
+        
+        for(let i = 0; i < 150; i++) {
+            setTimeout(createHeart, i * 40);
         }
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            const items = ['💖', '❤️', '✨', '💝', '🌸'];
-            heart.innerText = items[Math.floor(Math.random() * items.length)];
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-            heart.style.fontSize = Math.random() * 30 + 20 + "px";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-    </script>
+        setTimeout(() => {
+            const msg = document.getElementById('final-msg');
+            const wish = document.getElementById('valentine-wish');
+            msg.style.display = 'block';
+            wish.style.display = 'block';
+            setTimeout(() => { msg.style.opacity = '1'; }, 100);
+        }, 4000);
+    }
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        const items = ['💖', '❤️', '✨', '💝', '🌸'];
+        heart.innerText = items[Math.floor(Math.random() * items.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        heart.style.fontSize = Math.random() * 30 + 20 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+</script>
 </body>
 </html>
